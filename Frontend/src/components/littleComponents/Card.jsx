@@ -60,6 +60,8 @@ const Card = ({ reward, id, totalReward, setTotalReward }) => {
       );
 
       if (response.status === 200) {
+        const toggleReward = response.data.message;
+        // console.log(toggleReward,'toggleREward')
         const updatedRewards = totalReward.map((r) =>
           r._id === id ? { ...r, starred: toggleReward.starred } : r
         );
