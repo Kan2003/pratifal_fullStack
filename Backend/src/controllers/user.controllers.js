@@ -9,8 +9,8 @@ import { Reward } from "../models/rewards.model.js";
 const genrateAccessAndRefreshTokens = async (id) => {
   try {
     const user = await User.findById(id);
-    const accessToken = user.generateAccessToken();
-    const refreshToken = user.generateRefreshToken();
+    const accessToken = await user.generateAccessToken();
+    const refreshToken = await user.generateRefreshToken();
 
     user.refreshToken = refreshToken;
     await user.save({ validateBeforeSave: false });
@@ -94,7 +94,7 @@ const loginUser = asyncHandler(async (req, res) => {
 
   const options = {
     httpOnly: true,
-    secure: true,
+    secure: process.env.NODE_ENV === 'production',
   };
 
   return res
@@ -239,7 +239,7 @@ const refreshAccessToken = asyncHandler(async (req, res) => {
 
     const options = {
       httpOnly: true,
-      secure: true,
+      secure: process.env.NODE_ENV === 'production',
     };
 
     const { accessToken, newRefreshToken } =
