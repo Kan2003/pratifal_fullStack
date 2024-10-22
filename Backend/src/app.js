@@ -28,6 +28,10 @@ app.use(cookieParser());
 import userRouter from "./routes/user.routes.js";
 import rewardRouter from "./routes/reward.routes.js";
 
+app.get('/' , (req, res) => {
+  res.send('Hello from the backend server')
+})
+
 app.use("/api/v2/users", userRouter);
 
 app.use("/api/v2/reward", rewardRouter);
