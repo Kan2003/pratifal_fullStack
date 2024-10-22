@@ -25,15 +25,14 @@ const ImageUpload = ({ setImageUpload, user, setUser }) => {
           formData,
           {
             headers: { "Content-Type": "multipart/form-data" },
-          }, {
-            withCredentials: true, // Include credentials (cookies) in the request
-          }
+            withCredentials: true,
+          },
         );
-        console.log(response);
+        // console.log(response);
         if (response.status === 200) {
-          console.log(response.data.data.profile);
+          // console.log(response.data.data.profile);
           setSuccess("Profile image updated successfully");
-          console.log("succcessfully updated profile image");
+          // console.log("succcessfully updated profile image");
 
           const updatedUser = response.data.data;
           setUser(updatedUser);
