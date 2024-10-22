@@ -25,6 +25,8 @@ const ImageUpload = ({ setImageUpload, user, setUser }) => {
           formData,
           {
             headers: { "Content-Type": "multipart/form-data" },
+          }, {
+            withCredentials: true, // Include credentials (cookies) in the request
           }
         );
         console.log(response);

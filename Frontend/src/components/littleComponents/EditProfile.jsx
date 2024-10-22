@@ -45,6 +45,8 @@ const EditProfile = ({ setError, setSuccess }) => {
       const response = await axios.patch(`${API_URl}/users/update-details`, {
         username: name,
         fullname: fullName,
+      }, {
+        withCredentials: true, // Include credentials (cookies) in the request
       });
       // console.log(response.data.data)
       setUser(response.data.data);

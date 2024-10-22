@@ -51,8 +51,8 @@ const Card = ({ reward, id, totalReward, setTotalReward }) => {
 
   const toggleStarred = async () => {
     try {
-      const response = await axios.patch(`${API_URl}/reward//toggle-reward/${id}`, {
-        withCredentials: true, // Include credentials (cookies) in the request
+      const response = await axios.patch(`${API_URl}/reward/toggle-reward/${id}`, {
+        withCredentials: true, 
       });
       // console.log(response.data.message);
 
