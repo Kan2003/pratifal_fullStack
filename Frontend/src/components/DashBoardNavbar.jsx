@@ -1,4 +1,4 @@
-import React, { useState, memo, useEffect, useRef } from "react";
+import React, { useState, memo, useEffect, useRef, useContext } from "react";
 import logo from "../assets/logo.png";
 import search from "../assets/Search.svg";
 import IconButton from "./littleComponents/IconButton";
@@ -8,9 +8,12 @@ import { DownOutlined } from "@ant-design/icons";
 import { Dropdown } from "antd";
 import logout from "../assets/logout-svgrepo-com.svg";
 import leftArrow from "../assets/leftArrow.svg";
+import { UserContext } from "../App";
 
 const DashBoardNavbar = memo(
-  ({ user, userImage, handleLogout, setSearch, setShowCreateForm , showCreateForm }) => {
+  ({ user, userImage, setSearch, setShowCreateForm , showCreateForm }) => {
+
+    const { handleLogout} = useContext(UserContext)
     const location = useLocation();
     // console.log(location.pathname);
     const [drop, setDrop] = useState(false);

@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useContext, useEffect, useRef, useState } from "react";
 import Navbar from "./Navbar";
 import Lenis from "lenis";
 import SignupButton from "./littleComponents/SignupButton";
@@ -10,7 +10,9 @@ import axios from "axios";
 import HorizontalScroll from "./littleComponents/HorizontalScroll";
 const API_URl = import.meta.env.VITE_API_URL;
 
-const Page = () => {
+const Page = ({handleLogout}) => {
+
+  
   useEffect(() => {
     const lenis = new Lenis();
 
@@ -76,7 +78,7 @@ const Page = () => {
   return (
     // style={{ backgroundImage: `url(${background})` }} background image style
     <div className="w-full bg-no-repeat">
-      <Navbar user={user} profile={profile} />
+      <Navbar user={user} profile={profile} handleLogout={handleLogout} />
       <div className="w-full relative pt-[7vw] ">
         <div className="flex px-[2vw] items-center justify-center flex-col gap-5 py-14">
           <h1 className=" text-[40px] xs:text-[30px] sm:text-[30px] md:text-[40px]  lg:text-[40px] xl:text-[40px] 2xl:text-[40px] text-center font-headlandOne ">

@@ -5,7 +5,7 @@ import { UserContext } from "../App";
 import DashBoardNavbar from "./DashBoardNavbar";
 const API_URl = import.meta.env.VITE_API_URL;
 
-const PrivateRoute = ({ children, isAuthenticated, setIsAuthenticated }) => {
+const PrivateRoute = ({ handleLogout ,  children, isAuthenticated, setIsAuthenticated }) => {
   const {
     user,
     setUser,
@@ -13,11 +13,10 @@ const PrivateRoute = ({ children, isAuthenticated, setIsAuthenticated }) => {
     setSearch,
     showCreateForm,
     setShowCreateForm,
+    tokens,
+    setTokens
   } = useContext(UserContext);
-  const [tokens, setTokens] = useState({
-    accessToken: null,
-    refreshToken: null,
-  });
+ 
   const navigate = useNavigate();
 
 
@@ -106,27 +105,9 @@ const PrivateRoute = ({ children, isAuthenticated, setIsAuthenticated }) => {
     return <Navigate to="/login" />;
   }
 
-  const handleLogout = async () => {
-    try {
-      const response = await axios.post(
-        `${API_URl}/users/logout`, 
-        {}, // Empty body
-        {
-          withCredentials: true,
-        }
-      );
+ 
   
-      if (response.status === 200) { 
-        // Clear frontend state
-        localStorage.removeItem("isAuthenticated");
-        setIsAuthenticated(false);
-        setTokens({ accessToken: null, refreshToken: null }); 
-        navigate("/");
-      }
-    } catch (error) {
-      console.error("Error logging out:", error);
-    }
-  };
+
   
   
 

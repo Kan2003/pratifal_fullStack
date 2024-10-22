@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { Link } from "react-router-dom";
 import logo from "../assets/logo.png";
 import SignupButton from "./littleComponents/SignupButton";
@@ -6,7 +6,8 @@ import profileImage from "../assets/Group 1000005837.svg";
 import login from "../assets/login-svgrepo-com.svg";
 import logout from "../assets/logout-svgrepo-com.svg";
 
-const Navbar = ({ user, profile }) => {
+
+const Navbar = ({ user, profile , handleLogout}) => {
   return (
     <div className="w-full fixed shadow-lg bg-slate-50 flex items-center z-[100] justify-between  h-[60px] px-2 ">
       <div>
@@ -21,7 +22,7 @@ const Navbar = ({ user, profile }) => {
           <div className="flex items-center  gap-4">
             {/* // logout button functionality is remaining */}
             <div className="bg-zinc-400 cursor-pointer group py-1 px-3 rounded-3xl tracking-wide  font-headlandOne flex items-center gap-[2px]">
-              <Link className="text-[12px] pl-2">Logout</Link>
+              <Link onClick={() => handleLogout()} className="text-[12px] pl-2">Logout</Link>
 
               <img className="w-[30px] h-[30px]" src={logout} alt="" />
             </div>
