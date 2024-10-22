@@ -5,6 +5,7 @@ import RagisterLoginLayout from "./littleComponents/RagisterLoginLayout";
 import Input from "./littleComponents/Input";
 import Error from "./littleComponents/Error";
 import Success from "./littleComponents/Success";
+const API_URl = import.meta.env.VITE_API_URL;
 
 const Login = ({ setIsAuthenticated }) => {
   const [email, setEmail] = useState("");
@@ -78,7 +79,7 @@ const Login = ({ setIsAuthenticated }) => {
     e.preventDefault();
 
     try {
-      const Response = await axios.post("/api/v2/users/login", {
+      const Response = await axios.post(`${API_URl}/users/login`, {
         email,
         password,
       });

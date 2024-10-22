@@ -5,6 +5,8 @@ import axios from "axios";
 import Error from "./littleComponents/Error";
 import Success from "./littleComponents/Success";
 import TextArea from "./littleComponents/TextArea";
+const API_URl = import.meta.env.VITE_API_URL;
+
 const EditReward = ({ reward, setIsEdit, totalReward, setTotalReward }) => {
   
   const [title, setTitle] = useState(reward.title);
@@ -84,7 +86,7 @@ const EditReward = ({ reward, setIsEdit, totalReward, setTotalReward }) => {
     e.preventDefault();
     try {
       const response = await axios.patch(
-        `/api/v2/reward/update-reward/${reward._id}`,
+        `${API_URl}/reward/update-reward/${reward._id}`,
         {
           title,
           description,

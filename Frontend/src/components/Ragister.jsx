@@ -7,6 +7,8 @@ import cross from "../assets/cross-mark-svgrepo-com.svg";
 import check from "../assets/check-svgrepo-com.svg";
 import Error from "./littleComponents/Error";
 import Success from "./littleComponents/Success";
+const API_URl = import.meta.env.VITE_API_URL;
+
 const Register = () => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
@@ -108,7 +110,7 @@ const Register = () => {
     e.preventDefault(); // Prevent page reload
     console.log("Form submission");
     try {
-      const response = await axios.post("/api/v2/users/ragister", {
+      const response = await axios.post(`${API_URl}/users/ragister`, {
         username: name,
         email,
         password,

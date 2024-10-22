@@ -3,6 +3,7 @@ import React, { useContext, useEffect, useState, useMemo } from "react";
 import { Navigate, useNavigate } from "react-router-dom";
 import { UserContext } from "../App";
 import DashBoardNavbar from "./DashBoardNavbar";
+const API_URl = import.meta.env.VITE_API_URL;
 
 const PrivateRoute = ({ children, isAuthenticated, setIsAuthenticated }) => {
   const {
@@ -19,12 +20,14 @@ const PrivateRoute = ({ children, isAuthenticated, setIsAuthenticated }) => {
   });
   const navigate = useNavigate();
 
+
+
   const refreshTokenHandler = async () => {
     if (!tokens.refreshToken) return;
 
     try {
       console.log("Refreshing access token...");
-      const { data } = await axios.post("/api/v2/users/refresh-accesstoken", {
+      const { data } = await axios.post(`${API_URl}/users/refresh-accesstoken`, {
         refreshToken: tokens.refreshToken,
       });
 
@@ -43,7 +46,7 @@ const PrivateRoute = ({ children, isAuthenticated, setIsAuthenticated }) => {
   useEffect(() => {
     const checkAuth = async () => {
       try {
-        const { data } = await axios.get("/api/v2/users/verify-token", {
+        const { data } = await axios.get(`${API_URl}/users/verify-token`, {
           withCredentials: true,
         });
         console.log('data' , data)
@@ -86,7 +89,7 @@ const PrivateRoute = ({ children, isAuthenticated, setIsAuthenticated }) => {
   useEffect(() => {
     const fetchUserDetails = async () => {
       try {
-        const { data } = await axios.get("/api/v2/users/");
+        const { data } = await axios.get(`${API_URl}/users`);
         setUser(data.data);
       } catch (error) {
         console.log("first error", error);
@@ -103,7 +106,7 @@ const PrivateRoute = ({ children, isAuthenticated, setIsAuthenticated }) => {
 
   const handleLogout = async () => {
     try {
-      const response = await axios.post("/api/v2/users/logout");
+      const response = await axios.post(`${API_URl}/users/logout`);
       if (response) {
         localStorage.removeItem("isAuthenticated");
         setIsAuthenticated(false);

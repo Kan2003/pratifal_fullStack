@@ -4,6 +4,8 @@ import axios from "axios";
 import Error from "./littleComponents/Error";
 import Success from "./littleComponents/Success";
 import coupon from "../assets/coupon.svg";
+const API_URl = import.meta.env.VITE_API_URL;
+
 const ChangePassword = () => {
   const [oldPassword, setOldPassword] = useState("");
   const [newPassword, setNewPassword] = useState("");
@@ -99,7 +101,7 @@ const ChangePassword = () => {
     e.preventDefault();
 
     try {
-      const response = await axios.patch("/api/v2/users/update-password", {
+      const response = await axios.patch(`${API_URl}/users/update-password`, {
         currentPassword: oldPassword,
         newPassword: newPassword,
         reTypeNewPassword: confirmPassword,

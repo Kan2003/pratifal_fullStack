@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import Error from "./Error";
 import Success from "./Success";
 import cross from "../../assets/cross.svg";
+const API_URl = import.meta.env.VITE_API_URL;
 
 const ImageUpload = ({ setImageUpload, user, setUser }) => {
   // console.log(user)
@@ -20,7 +21,7 @@ const ImageUpload = ({ setImageUpload, user, setUser }) => {
       try {
         // Make API call to upload the image
         const response = await axios.patch(
-          "https://backend-reward.onrender.com/api/v2/users/update-profile",
+          `${API_URl}/users/update-profile`,
           formData,
           {
             headers: { "Content-Type": "multipart/form-data" },

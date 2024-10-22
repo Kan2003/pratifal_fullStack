@@ -5,9 +5,9 @@ import Card from "./littleComponents/Card";
 import axios from "axios";
 import CreateReward from "./CreateReward";
 import coupon from "../assets/coupon.svg";
+const API_URl = import.meta.env.VITE_API_URL;
 const Home = () => {
   const { search = "", showCreateForm, setShowCreateForm } = useContext(UserContext);
-
 
   if(search === undefined || search === "undefinded"){
     location.reload()
@@ -21,7 +21,7 @@ const Home = () => {
   useEffect(() => {
     const allRewards = async () => {
       try {
-        const response = await axios.get("/api/v2/reward/");
+        const response = await axios.get(`${API_URl}/reward/`);
 
         setTotalReward(response.data.message);
       } catch (error) {

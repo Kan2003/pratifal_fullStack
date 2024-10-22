@@ -7,6 +7,7 @@ import copy from "../../assets/copy.svg";
 import axios from "axios";
 import bgImage from '../../assets/bgGift.png'
 import EditReward from "../EditReward";
+const API_URl = import.meta.env.VITE_API_URL;
 
 const Card = ({ reward, id, totalReward, setTotalReward }) => {
   const coupon = reward.couponCode;
@@ -30,7 +31,7 @@ const Card = ({ reward, id, totalReward, setTotalReward }) => {
   // delete Card
   const handleDelete = async () => {
     try {
-      const response = await axios.delete(`/api/v2/reward/delete-reward/${id}`);
+      const response = await axios.delete(`${API_URl}/reward/delete-reward/${id}`);
       console.log(response.data);
       if (response.status === 200) {
         const updatedRewards = totalReward.filter((r) => r._id !== id)
@@ -48,7 +49,7 @@ const Card = ({ reward, id, totalReward, setTotalReward }) => {
 
   const toggleStarred = async () => {
     try {
-      const response = await axios.patch(`/api/v2/reward//toggle-reward/${id}`);
+      const response = await axios.patch(`${API_URl}/reward//toggle-reward/${id}`);
       // console.log(response.data.message);
 
       if (response.status === 200) {

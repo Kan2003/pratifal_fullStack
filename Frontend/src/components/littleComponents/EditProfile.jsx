@@ -2,6 +2,7 @@ import React, { useContext, useState } from "react";
 import { UserContext } from "../../App";
 import Input from "./Input";
 import axios from "axios";
+const API_URl = import.meta.env.VITE_API_URL;
 
 const EditProfile = ({ setError, setSuccess }) => {
   const { setUser } = useContext(UserContext);
@@ -41,7 +42,7 @@ const EditProfile = ({ setError, setSuccess }) => {
     e.preventDefault(); // Prevent page reload
     console.log("Form submission");
     try {
-      const response = await axios.patch("/api/v2/users/update-details", {
+      const response = await axios.patch(`${API_URl}/users/update-details`, {
         username: name,
         fullname: fullName,
       });

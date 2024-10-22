@@ -8,6 +8,8 @@ import video from "../assets/Untitled Video.mp4";
 import ColorButton from "./littleComponents/ColorButton";
 import axios from "axios";
 import HorizontalScroll from "./littleComponents/HorizontalScroll";
+const API_URl = import.meta.env.VITE_API_URL;
+
 const Page = () => {
   useEffect(() => {
     const lenis = new Lenis();
@@ -27,7 +29,7 @@ const Page = () => {
   useEffect(() => {
     const userDetails = async () => {
       try {
-        const response = await axios.get("/api/v2/users/", {
+        const response = await axios.get(`${API_URl}/users/`, {
           withCredentials: true,
         });
 
@@ -41,7 +43,7 @@ const Page = () => {
           try {
             // Refresh the access token using refresh token
             const refreshResponse = await axios.post(
-              "/api/v2/users/refresh-accesstoken",
+              `${API_URl}/users/refresh-accesstoken`,
               {}, // No need to pass credentials manually, they are in the cookie
               { withCredentials: true } // Ensure refreshToken is sent with the request
             );
@@ -50,7 +52,7 @@ const Page = () => {
 
             // If refresh is successful, retry fetching user details
             if (refreshResponse.status === 200) {
-              const newResponse = await axios.get("/api/v2/users/", {
+              const newResponse = await axios.get(`/${API_URl}/users/`, {
                 withCredentials: true,
               });
 
