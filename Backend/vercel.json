@@ -2,17 +2,18 @@
     "version": 2,
     "builds": [
         {
-            "src": "*.js",
+            "src": "backend/index.js", // Point to your main server file
             "use": "@vercel/node"
         }
     ],
     "routes": [
         {
-            "src": "/(.*)",
-            "dest": "/"
+            "src": "/api/(.*)", // Match any API route
+            "dest": "/backend/index.js" // Forward to the Node.js server
+        },
+        {
+            "src": "/(.*)", // Match all other routes
+            "dest": "/index.html" // Adjust based on your frontend
         }
-    ],
-     "rewrites": [
-    { "source": "/(.*)", "destination": "/" }
-  ]
+    ]
 }
