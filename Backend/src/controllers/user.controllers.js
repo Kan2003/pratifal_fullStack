@@ -96,9 +96,11 @@ const loginUser = asyncHandler(async (req, res) => {
   );
 
   const options = {
-    httpOnly: true,
+    httpsOnly: true,
     secure: process.env.NODE_ENV === 'production',
   };
+
+  console.log(accessToken, refreshAccessToken , 'access token refresh token')
 
   return res
     .status(200)
