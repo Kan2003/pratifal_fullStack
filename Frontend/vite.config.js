@@ -4,14 +4,12 @@ import react from '@vitejs/plugin-react'
 // https://vitejs.dev/config/
 export default defineConfig({
   server: {
-    proxy: {
-      '/api': {
-        target: 'https://pratifal-backend.vercel.app',
-        changeOrigin: true,
-        secure: true, // If your backend uses HTTPS
-        rewrite: (path) => path.replace(/^\/api/, '') // Adjust this if needed
-      }
+    proxy : {
+      '/api' : 'http://localhost:8000'
     }
   },
   plugins: [react()],
 })
+
+
+// vite proxy not works in production
