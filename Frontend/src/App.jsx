@@ -15,6 +15,7 @@ import Home from "./components/Home.jsx";
 import Page from "./components/Page.jsx";
 import Profile from "./components/Profile.jsx";
 import axios from "axios";
+
 const API_URl = import.meta.env.VITE_API_URL;
 
 function App() {
@@ -28,7 +29,6 @@ function App() {
   });
 
   
-
   const handleLogout = async () => {
     try {
       const response = await axios.post(
@@ -44,6 +44,9 @@ function App() {
         localStorage.removeItem("isAuthenticated");
         setIsAuthenticated(false);
         setTokens({ accessToken: null, refreshToken: null }); 
+        if (window.location.pathname === "/") {
+          window.location.reload(); // Reload the page if on the home page
+        }
       }
     } catch (error) {
       console.error("Error logging out:", error);
