@@ -51,13 +51,16 @@ const Card = ({ reward, id, totalReward, setTotalReward }) => {
 
   const toggleStarred = async () => {
     try {
-      const response = await axios.patch(`${API_URl}/reward/toggle-reward/${id}`, {
-        withCredentials: true, 
-      });
-      // console.log(response.data.message);
+      const response = await axios.patch(
+        `${API_URl}/reward/toggle-reward/${id}`, 
+        {}, // Empty body if no request data is needed
+        {
+          withCredentials: true, // Moved to the Axios config object
+        }
+      );
 
       if (response.status === 200) {
-        const toggleReward = response.data.message;
+        // const toggleReward = response.data.message;
         console.log(toggleReward,'toggleREward')
         const updatedRewards = totalReward.map((r) =>
           r._id === id ? { ...r, starred: toggleReward.starred } : r
