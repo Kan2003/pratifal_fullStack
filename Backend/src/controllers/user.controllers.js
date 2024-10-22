@@ -100,7 +100,7 @@ const loginUser = asyncHandler(async (req, res) => {
     secure: process.env.NODE_ENV === 'production',
   };
 
-  console.log(accessToken, refreshAccessToken , 'access token refresh token')
+  console.log(accessToken, 'access token login' , refreshToken )
 
   return res
     .status(200)
