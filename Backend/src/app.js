@@ -4,7 +4,7 @@ import cookieParser from "cookie-parser";
 
 const app = express();
 app.use(cors({
-  origin: 'https://pratifal-frontend.vercel.app',
+  origin: '*', // Allow all origins
   methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
   credentials: true, // If you are using cookies or authorization headers
 }));
