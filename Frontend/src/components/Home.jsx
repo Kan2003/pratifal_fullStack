@@ -21,7 +21,9 @@ const Home = () => {
   useEffect(() => {
     const allRewards = async () => {
       try {
-        const response = await axios.get(`${API_URl}/reward/`);
+        const response = await axios.get(`${API_URl}/reward/`,{
+          withCredentials: true, // Include cookies with the request
+        });
 
         setTotalReward(response.data.message);
       } catch (error) {

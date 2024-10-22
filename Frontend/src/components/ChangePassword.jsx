@@ -105,6 +105,8 @@ const ChangePassword = () => {
         currentPassword: oldPassword,
         newPassword: newPassword,
         reTypeNewPassword: confirmPassword,
+      }, {
+        withCredentials: true, // Include credentials (cookies) in the request
       });
 
       console.log(response);

@@ -89,7 +89,9 @@ const PrivateRoute = ({ children, isAuthenticated, setIsAuthenticated }) => {
   useEffect(() => {
     const fetchUserDetails = async () => {
       try {
-        const { data } = await axios.get(`${API_URl}/users`);
+        const { data } = await axios.get(`${API_URl}/users`,{
+          withCredentials: true, // Include cookies with the request
+        });
         setUser(data.data);
       } catch (error) {
         console.log("first error", error);
