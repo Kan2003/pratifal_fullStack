@@ -38,7 +38,9 @@ const ImageUpload = ({ setImageUpload, user, setUser }) => {
           setUser(updatedUser);
           setTimeout(() => {
             setImageUpload(false);
-          }, 2000);
+            setSuccess("");
+            setError("");
+          }, 3000);
         }
       } catch (err) {
         console.error(err);

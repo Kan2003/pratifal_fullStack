@@ -39,8 +39,8 @@ const Card = ({ reward, id, totalReward, setTotalReward }) => {
         const updatedRewards = totalReward.filter((r) => r._id !== id)
         setTotalReward(updatedRewards);
 
-        console.log(updatedRewards , 'updated')
-        console.log("reward deleteed successfully");
+        // console.log(updatedRewards , 'updated')
+
       }
     } catch (error) {
       console.error(error);

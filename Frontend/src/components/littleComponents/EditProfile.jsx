@@ -57,7 +57,11 @@ const EditProfile = ({ setError, setSuccess }) => {
       setSuccess("User Updated successful!");
       setName("");
       setFullName("");
-      setError("");
+      setTimeout(() => {
+        setError("");
+        setSuccess("");
+      })
+
     } catch (error) {
       // console.log(error.status , 'error');
       const status = error.status;
