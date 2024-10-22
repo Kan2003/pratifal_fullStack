@@ -108,19 +108,26 @@ const PrivateRoute = ({ children, isAuthenticated, setIsAuthenticated }) => {
 
   const handleLogout = async () => {
     try {
-      const response = await axios.post(`${API_URl}/users/logout`, {
-        withCredentials: true, // Include credentials (cookies) in the request
-      });
-      if (response) {
+      const response = await axios.post(
+        `${API_URl}/users/logout`, 
+        {}, // Empty body
+        {
+          withCredentials: true,
+        }
+      );
+  
+      if (response.status === 200) { 
+        // Clear frontend state
         localStorage.removeItem("isAuthenticated");
         setIsAuthenticated(false);
-        setTokens({ accessToken: null, refreshToken: null }); // clear tokens
+        setTokens({ accessToken: null, refreshToken: null }); 
         navigate("/");
       }
     } catch (error) {
       console.error("Error logging out:", error);
     }
   };
+  
   
 
   return (
