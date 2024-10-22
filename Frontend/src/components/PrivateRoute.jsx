@@ -108,7 +108,9 @@ const PrivateRoute = ({ children, isAuthenticated, setIsAuthenticated }) => {
 
   const handleLogout = async () => {
     try {
-      const response = await axios.post(`${API_URl}/users/logout`);
+      const response = await axios.post(`${API_URl}/users/logout`, {
+        withCredentials: true, // Include credentials (cookies) in the request
+      });
       if (response) {
         localStorage.removeItem("isAuthenticated");
         setIsAuthenticated(false);

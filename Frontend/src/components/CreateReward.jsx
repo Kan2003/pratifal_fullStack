@@ -81,6 +81,8 @@ const CreateReward = ({ setShowCreateForm  , setTotalReward, totalReward}) => {
         description,
         couponCode: coupon,
         expiryDate: new Date(expiryDate),
+      }, {
+        withCredentials: true, // Include credentials (cookies) in the request
       });
       console.log(response.data.message)
       const newReward = response.data.message;

@@ -92,6 +92,8 @@ const EditReward = ({ reward, setIsEdit, totalReward, setTotalReward }) => {
           description,
           couponCode: coupon,
           expiryDate: new Date(expiryDate),
+        }, {
+          withCredentials: true, // Include credentials (cookies) in the request
         }
       );
       if (response.status === 200) {
