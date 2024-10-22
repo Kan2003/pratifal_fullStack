@@ -65,7 +65,7 @@ const DashBoardNavbar = memo(
         label: (
           <div
             className="flex items-center justify-center gap-2"
-            onClick={handleLogout}
+            onClick={() => handleLogout()}
           >
             <h1>LogOut</h1>
             <img
