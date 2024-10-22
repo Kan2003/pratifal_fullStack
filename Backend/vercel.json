@@ -2,18 +2,14 @@
     "version": 2,
     "builds": [
         {
-            "src": "backend/index.js",
+            "src": "index.js", // Since root is now backend, this points directly to index.js
             "use": "@vercel/node"
         }
     ],
     "routes": [
         {
             "src": "/api/(.*)",
-            "dest": "/backend/index.js" 
-        },
-        {
-            "src": "/(.*)", 
-            "dest": "/index.html" 
+            "dest": "/index.js" // Forward API requests to index.js
         }
     ]
 }
