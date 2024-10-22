@@ -31,7 +31,9 @@ const Card = ({ reward, id, totalReward, setTotalReward }) => {
   // delete Card
   const handleDelete = async () => {
     try {
-      const response = await axios.delete(`${API_URl}/reward/delete-reward/${id}`);
+      const response = await axios.delete(`${API_URl}/reward/delete-reward/${id}`, {
+        withCredentials: true, // Include credentials (cookies) in the request
+      });
       console.log(response.data);
       if (response.status === 200) {
         const updatedRewards = totalReward.filter((r) => r._id !== id)
@@ -49,7 +51,9 @@ const Card = ({ reward, id, totalReward, setTotalReward }) => {
 
   const toggleStarred = async () => {
     try {
-      const response = await axios.patch(`${API_URl}/reward//toggle-reward/${id}`);
+      const response = await axios.patch(`${API_URl}/reward//toggle-reward/${id}`, {
+        withCredentials: true, // Include credentials (cookies) in the request
+      });
       // console.log(response.data.message);
 
       if (response.status === 200) {
