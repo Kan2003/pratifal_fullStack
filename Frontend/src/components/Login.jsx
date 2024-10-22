@@ -82,7 +82,7 @@ const Login = ({ setIsAuthenticated }) => {
       const Response = await axios.post(`${API_URl}/users/login`, {
         email,
         password,
-      });
+      }, { withCredentials: true });
 
       if (Response.data.success) {
         // Assuming success response from the API
