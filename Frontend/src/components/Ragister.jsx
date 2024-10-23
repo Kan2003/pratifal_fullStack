@@ -144,11 +144,11 @@ const Register = () => {
   };
 
   return (
-    <div className="w-full h-screen bg-white flex items-center justify-center relative">
+    <div className="w-full h-screen bg-white flex xs:flex-col md:flex-row items-center justify-center xs:justify-around relative">
       {error && <Error error={error} />}
       {success && <Success success={success} />}
       <RagisterLoginLayout />
-      <div className="w-[50vw] h-full flex items-start flex-col pt-[15vw] font-headlandOne px-[8vw]">
+      <div className="w-[50vw] xs:w-full sm:w-[80%] md:w-[50vw] h-full flex items-start flex-col pt-[15vw] xs:pt-[0vw]    md:pt-[25vw] lg:pt-[15vw] font-headlandOne  px-[8vw] xs:px-[5vw]">
         
         <form className="w-full h-full" onSubmit={handleSubmit}>
           <div className="w-full">

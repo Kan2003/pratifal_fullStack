@@ -81,9 +81,9 @@ const EditProfile = ({ setError, setSuccess }) => {
   };
 
   return (
-    <div className="bg-slate-100 w-[55%]  px-4 py-2 rounded-lg">
+    <div className="bg-slate-100 w-[55%] xs:w-[90%] sm:w-[55%]  px-4 py-2 rounded-lg">
       <h1 className="font-Harmattan text-[30px] opacity-[40%]">Edit Profile</h1>
-      <form className="w-[80%] py-[2vw] px-[5vw]" onSubmit={handleSubmit}>
+      <form className="w-[80%] xs:w-full sm:w-[80%] py-[2vw] px-[5vw]" onSubmit={handleSubmit}>
         <Input
           error={showFullnameError}
           id="fullname"

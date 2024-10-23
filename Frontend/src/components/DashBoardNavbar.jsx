@@ -11,9 +11,8 @@ import leftArrow from "../assets/leftArrow.svg";
 import { UserContext } from "../App";
 
 const DashBoardNavbar = memo(
-  ({ user, userImage, setSearch, setShowCreateForm , showCreateForm }) => {
-
-    const { handleLogout} = useContext(UserContext)
+  ({ user, userImage, setSearch, setShowCreateForm, showCreateForm }) => {
+    const { handleLogout } = useContext(UserContext);
     const location = useLocation();
     // console.log(location.pathname);
     const [drop, setDrop] = useState(false);
@@ -50,16 +49,17 @@ const DashBoardNavbar = memo(
         key: "2",
       },
       {
-        label: (
-          (!showCreateForm && (location.pathname === '/dashboard')) &&  (<div onClick={() => {
-            handleDropDown();
-            openRewardForm()
-          }} >
+        label: !showCreateForm && location.pathname === "/dashboard" && (
+          <div
+            onClick={() => {
+              handleDropDown();
+              openRewardForm();
+            }}
+          >
             Create Reward
-          </div>)
-          
+          </div>
         ),
-        key : "3",
+        key: "3",
       },
       {
         type: "divider",
@@ -87,11 +87,8 @@ const DashBoardNavbar = memo(
       setSearch(e.target.value);
     };
 
-    
-
     // Use a stable function reference for handleDropDown
     const [fullSearch, setFullSearch] = useState(false);
-
 
     const searchInputRef = useRef(null);
 
@@ -103,7 +100,7 @@ const DashBoardNavbar = memo(
     }, [fullSearch]);
     return (
       <>
-        <div className="w-full fixed shadow-lg xs:px-2 sm:px-4 bg-slate-50 flex items-center z-[100] justify-between h-[60px] px-4 xs:h-[50px] sm:h-[60px] transition-all duration-300 ease-in-out ">
+        <div className="w-full 2xl:bg-yellow-300 xl:bg-red-300 lg:bg-orange-400 md:bg-purple-300 sm:bg-green-300 xs:bg-pink-400 fixed shadow-lg xs:px-2 sm:px-4 bg-slate-50 flex items-center z-[100] justify-between h-[60px] px-4 xs:h-[50px] sm:h-[60px] transition-all duration-300 ease-in-out ">
           {/* Logo */}
           {!fullSearch && (
             <Link to="/dashboard">
@@ -199,10 +196,15 @@ const DashBoardNavbar = memo(
           )}
           {fullSearch && (
             <div className="w-full px-4 h-full flex items-center justify-around ">
-              <img onClick={() => setFullSearch(!fullSearch)} className="cursor-pointer" src={leftArrow} alt="" />
+              <img
+                onClick={() => setFullSearch(!fullSearch)}
+                className="cursor-pointer"
+                src={leftArrow}
+                alt=""
+              />
               <div className="group  input w-[80%] shadow mb-1 border rounded-full py-2 px-3 text-sm text-black focus-within:border-[#58B9ED] focus-within: hover:border-[#58B9ED] flex items-center justify-between">
                 <input
-                 ref={searchInputRef}
+                  ref={searchInputRef}
                   className="outline-none w-[80%] "
                   placeholder="Search your reward"
                   onChange={handleSearch}

@@ -21,7 +21,7 @@ export default {
         "extra-bold": 900,
       },
       screens : {
-        'xs': '360px',    
+        'xs': '330px',    
       }
     },
   },
