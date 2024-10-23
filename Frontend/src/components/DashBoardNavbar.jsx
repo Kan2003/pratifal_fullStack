@@ -221,7 +221,7 @@ const DashBoardNavbar = memo(
                   onChange={handleSearch}
                 />
                 <img
-                  className="w-[23px] h-[23px] opacity-[80%]"
+                  className="w-[23px] cursor-pointer h-[23px] opacity-[80%]"
                   src={cross}
                   alt="cross Icon"
                   onClick={() => clearSearch()}
