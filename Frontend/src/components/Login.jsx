@@ -5,6 +5,7 @@ import RagisterLoginLayout from "./littleComponents/RagisterLoginLayout";
 import Input from "./littleComponents/Input";
 import Error from "./littleComponents/Error";
 import Success from "./littleComponents/Success";
+import logo from "../assets/logo.png";
 const API_URl = import.meta.env.VITE_API_URL;
 
 const Login = ({ setIsAuthenticated }) => {
@@ -79,10 +80,14 @@ const Login = ({ setIsAuthenticated }) => {
     e.preventDefault();
 
     try {
-      const Response = await axios.post(`${API_URl}/users/login`, {
-        email,
-        password,
-      }, { withCredentials: true });
+      const Response = await axios.post(
+        `${API_URl}/users/login`,
+        {
+          email,
+          password,
+        },
+        { withCredentials: true }
+      );
 
       if (Response.data.success) {
         // Assuming success response from the API
@@ -110,71 +115,79 @@ const Login = ({ setIsAuthenticated }) => {
     }
   };
   return (
-    <div className="w-full h-screen bg-white flex xs:flex-col md:flex-row items-center justify-center xs:justify-around relative">
-    {error && <Error error={error} />}
-    {success && <Success success={success} />}
+    <div className="w-full h-screen bg-white xs:pt-[10vw] sm:pt-[5vw] md:pt-[2vw] lg:pt-0 flex xs:flex-col md:flex-row items-center justify-center xs:justify-around relative">
+      {error && <Error error={error} />}
+      {success && <Success success={success} />}
+      <div className="fixed w-full bg-slate-50 top-0 left-0 flex pl-3  justify-start items-center">
+        <img className="w-[50px] h-[50px]" src={logo} alt="" />
 
-    <RagisterLoginLayout />
-    <div className="w-[50vw] xs:w-full sm:w-[80%] md:w-[50vw] h-full flex items-start flex-col pt-[15vw] xs:pt-[0vw]  md:pt-[25vw] lg:pt-[15vw] font-headlandOne px-[8vw] xs:px-[5vw]">
-      <h1>Logo</h1>
-      <form className="w-full h-full" onSubmit={handleSubmit}>
-        <div className="w-full">
-          <label
-            htmlFor="title"
-            className="block text-[16px] leading-none font-medium font-Harmattan text-gray-700"
-          >
-            Email
-          </label>
-          <Input
-            error={showEmailError}
-            id="email"
-            type="email"
-            placeholder="Email"
-            value={email}
-            handleChange={handleChange}
-            handleBlur={handleBlur}
-            text={emailText}
-          />
-        </div>
-        <div className="w-full">
-          <label
-            htmlFor="title"
-            className="block text-[16px] leading-none font-medium font-Harmattan text-gray-700"
-          >
-            Password
-          </label>
-          <Input
-            error={showPasswordError}
-            id="password"
-            type="password"
-            placeholder="Password"
-            value={password}
-            handleChange={handleChange}
-            handleBlur={handleBlur}
-            text={passwordText}
-            passwordCheck={true}
-            passwordIcon={passwordIcon}
-          />
-        </div>
-
-        <button
-          className={`w-full text-center  text-[14px] py-2 transition-all duration-300 ease-in-out rounded-lg ${
-            buttonError ? "bg-[#58B9ED]" : "bg-[#58b9ed54] cursor-not-allowed"
-          } `}
-          type="submit"
-          disabled={!buttonError}
+        <Link
+          className="text-black text-2xl xs:text-xl md:text-2xl font-headlandOne"
+          to="/"
         >
-          Sign In
-        </button>
-        <h3 className="text-sm text-center mt-2">
-          Don't have an account{" "}
-          <Link className="text-[#58B9ED] underline" to="/register">
-            sign up with Email
-          </Link>{" "}
-        </h3>
-      </form>
+          Pratifal
+        </Link>
+      </div>
+      <RagisterLoginLayout />
+      <div className="w-[50vw] xs:w-full sm:w-[80%] md:w-[50vw] h-full flex items-start flex-col pt-[15vw] xs:pt-[0vw]  md:pt-[25vw] lg:pt-[15vw] font-headlandOne px-[8vw] xs:px-[5vw]">
+        <form className="w-full h-full" onSubmit={handleSubmit}>
+          <div className="w-full">
+            <label
+              htmlFor="title"
+              className="block text-[16px] leading-none font-medium font-Harmattan text-gray-700"
+            >
+              Email
+            </label>
+            <Input
+              error={showEmailError}
+              id="email"
+              type="email"
+              placeholder="Email"
+              value={email}
+              handleChange={handleChange}
+              handleBlur={handleBlur}
+              text={emailText}
+            />
+          </div>
+          <div className="w-full">
+            <label
+              htmlFor="title"
+              className="block text-[16px] leading-none font-medium font-Harmattan text-gray-700"
+            >
+              Password
+            </label>
+            <Input
+              error={showPasswordError}
+              id="password"
+              type="password"
+              placeholder="Password"
+              value={password}
+              handleChange={handleChange}
+              handleBlur={handleBlur}
+              text={passwordText}
+              passwordCheck={true}
+              passwordIcon={passwordIcon}
+            />
+          </div>
+
+          <button
+            className={`w-full text-center  text-[14px] py-2 transition-all duration-300 ease-in-out rounded-lg ${
+              buttonError ? "bg-[#58B9ED]" : "bg-[#58b9ed54] cursor-not-allowed"
+            } `}
+            type="submit"
+            disabled={!buttonError}
+          >
+            Sign In
+          </button>
+          <h3 className="text-sm text-center mt-2">
+            Don't have an account{" "}
+            <Link className="text-[#58B9ED] underline" to="/register">
+              sign up with Email
+            </Link>{" "}
+          </h3>
+        </form>
+      </div>
     </div>
-  </div>
   );
 };
 
