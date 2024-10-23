@@ -6,6 +6,9 @@ import edit from "../../assets/edit.svg";
 import copy from "../../assets/copy.svg";
 import axios from "axios";
 import bgImage from '../../assets/bgGift.png'
+import bgImage2 from '../../assets/bgGift2.png'
+import bgImage3 from '../../assets/bgGift3.png'
+import bgImage4 from '../../assets/bgGift4.png'
 import EditReward from "../EditReward";
 const API_URl = import.meta.env.VITE_API_URL;
 
@@ -20,6 +23,12 @@ const API_URl = import.meta.env.VITE_API_URL;
 
 
 const Card = ({ reward, id, totalReward, setTotalReward }) => {
+
+  // we have to update this code a little bit after someday.......
+  const bgGiftArray = [bgImage , bgImage2, bgImage3, bgImage4]
+
+  const randomBgGift = bgGiftArray[Math.floor(Math.random() * 4)];
+
   const coupon = reward.couponCode;
   const date = new Date(reward.expiryDate);
 
@@ -90,7 +99,7 @@ const Card = ({ reward, id, totalReward, setTotalReward }) => {
 
   return (
     <>
-      <div style={{ backgroundImage: `url(${bgImage})` }} className="w-[300px] h-[190px] text-white rounded-2xl bg-[#d9d9d971] flex flex-col justify-between px-[10px] py-[8px] border-[1px] bg-bottom bg-cover border-zinc-500 shadow-md  object-cover ">
+      <div style={{ backgroundImage: `url(${randomBgGift})` }} className="w-[300px] h-[190px] text-white rounded-2xl bg-[#d9d9d971] flex flex-col justify-between px-[10px] py-[8px] border-[1px] bg-bottom bg-cover border-zinc-500 shadow-md  object-cover ">
         <div className="w-full flex items-center justify-end gap-2">
           <img
             onClick={handleEditCard}
