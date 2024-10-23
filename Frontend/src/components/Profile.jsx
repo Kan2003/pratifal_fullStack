@@ -73,7 +73,7 @@ const Profile = () => {
                 <h1 className="font-hanken-grotesk text-[15px] text-[#58B9ED] font-semibold">
                   Fullname :{" "}
                 </h1>
-                <h1 className="font-headlandOne text-[15px]">
+                <h1 className="font-headlandOne text-[15px] xs:text-[13px] sm:text-[15px] ">
                   {user?.fullname}
                 </h1>
               </div>
@@ -81,7 +81,7 @@ const Profile = () => {
                 <h1 className="font-hanken-grotesk text-[15px] text-[#58B9ED] font-semibold">
                   Username :{" "}
                 </h1>
-                <h1 className="font-headlandOne text-[15px]">
+                <h1 className="font-headlandOne text-[15px] xs:text-[13px] sm:text-[15px] ">
                   {user?.username}
                 </h1>
               </div>
@@ -89,7 +89,7 @@ const Profile = () => {
                 <h1 className="font-hanken-grotesk text-[15px] text-[#58B9ED] font-semibold">
                   Email :{" "}
                 </h1>
-                <h1 className="font-headlandOne text-[15px]">{user?.email}</h1>
+                <h1 className="font-headlandOne text-[15px] xs:text-[13px] sm:text-[15px] ">{user?.email}</h1>
               </div>
             </div>
           </div>
@@ -113,7 +113,7 @@ const Profile = () => {
                 editProfile ? "bg-[#58B9ED]" : "bg-slate-100"
               }  px-2 py-3 text-center rounded-lg cursor-pointer `}
             >
-              <h4>Edit Profile Details</h4>
+              <h4 className="xs:text-[12px] sm:text-[15px] font-hanken-grotesk "   >Edit Profile Details</h4>
             </div>
             <div
               onClick={handleTheme}
@@ -121,7 +121,7 @@ const Profile = () => {
                 theme ? "bg-[#58B9ED]" : "bg-slate-100"
               }  px-2 py-3 text-center rounded-lg cursor-pointer `}
             >
-              <h4>Change Theme</h4>
+              <h4 className="xs:text-[12px] sm:text-[15px] font-hanken-grotesk">Change Theme</h4>
             </div>
           </div>
           {editProfile && !theme && (

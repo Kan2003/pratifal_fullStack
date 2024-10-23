@@ -118,6 +118,7 @@ const PrivateRoute = ({ handleLogout ,  children, isAuthenticated, setIsAuthenti
           handleLogout={handleLogout}
           user={user}
           userImage={user?.profile}
+          search={search}
           setSearch={setSearch}
           setShowCreateForm={setShowCreateForm}
           showCreateForm={showCreateForm}
