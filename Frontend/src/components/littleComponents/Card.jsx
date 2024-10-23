@@ -9,6 +9,16 @@ import bgImage from '../../assets/bgGift.png'
 import EditReward from "../EditReward";
 const API_URl = import.meta.env.VITE_API_URL;
 
+
+// random card bg 
+
+
+// Math.floor(Math.random() * 5)
+
+
+
+
+
 const Card = ({ reward, id, totalReward, setTotalReward }) => {
   const coupon = reward.couponCode;
   const date = new Date(reward.expiryDate);

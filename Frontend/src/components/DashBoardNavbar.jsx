@@ -19,7 +19,7 @@ const DashBoardNavbar = memo(
     const handleDropDown = () => {
       setDrop((prev) => !prev);
     };
-
+    
     // create reward  component
 
     const openRewardForm = () => {
@@ -100,7 +100,7 @@ const DashBoardNavbar = memo(
     }, [fullSearch]);
     return (
       <>
-        <div className="w-full 2xl:bg-yellow-300 xl:bg-red-300 lg:bg-orange-400 md:bg-purple-300 sm:bg-green-300 xs:bg-pink-400 fixed shadow-lg xs:px-2 sm:px-4 bg-slate-50 flex items-center z-[100] justify-between h-[60px] px-4 xs:h-[50px] sm:h-[60px] transition-all duration-300 ease-in-out ">
+        <div className="w-full fixed shadow-lg xs:px-2 sm:px-4 bg-slate-50 flex items-center z-[100] justify-between h-[60px] px-4 xs:h-[50px] sm:h-[60px] transition-all duration-300 ease-in-out ">
           {/* Logo */}
           {!fullSearch && (
             <Link to="/dashboard">
@@ -156,11 +156,13 @@ const DashBoardNavbar = memo(
                     className="bg-[#F1F3F7] w-[40px] h-[40px] xs:w-[30px] xs:h-[30px]  sm:w-[40px] sm:h-[40px] border-[1px] border-zinc-600 rounded-lg cursor-pointer flex items-center justify-center overflow-hidden"
                   >
                     {userImage?.length > 4 ? (
-                      <img
-                        className="w-full h-full  object-cover  scale-125 brightness-125 transition-all duration-500 ease-in"
-                        src={userImage}
-                        alt="User"
-                      />
+                     <div className="flex justify-center items-center w-full bg-center h-full">
+                     <img
+                       className="object-cover scale-125  transition-all duration-500 ease-in"
+                       src={userImage}
+                       alt="User"
+                     />
+                   </div>
                     ) : (
                       <img
                         src={profileImage}
