@@ -5,7 +5,7 @@ import RagisterLoginLayout from "./littleComponents/RagisterLoginLayout";
 import Input from "./littleComponents/Input";
 import Error from "./littleComponents/Error";
 import Success from "./littleComponents/Success";
-import logo from "../assets/logo.png";
+import logo2 from '../assets/e351cb12-1980-4409-a8c0-679c37ef00e1-removebg-preview.png'
 const API_URl = import.meta.env.VITE_API_URL;
 
 const Login = ({ setIsAuthenticated }) => {
@@ -119,7 +119,7 @@ const Login = ({ setIsAuthenticated }) => {
       {error && <Error error={error} />}
       {success && <Success success={success} />}
       <div className="fixed w-full bg-slate-50 top-0 left-0 flex pl-3  justify-start items-center">
-        <img className="w-[50px] h-[50px]" src={logo} alt="" />
+        <img className="w-[50px] h-[50px]" src={logo2} alt="" />
 
         <Link
           className="text-black text-2xl xs:text-xl md:text-2xl font-headlandOne"

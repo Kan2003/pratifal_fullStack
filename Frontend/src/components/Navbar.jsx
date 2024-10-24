@@ -1,10 +1,11 @@
 import React, { useContext, useState } from "react";
 import { Link } from "react-router-dom";
-import logo from "../assets/logo.png";
+
 import SignupButton from "./littleComponents/SignupButton";
 import profileImage from "../assets/Group 1000005837.svg";
 import login from "../assets/login-svgrepo-com.svg";
 import logout from "../assets/logout-svgrepo-com.svg";
+import logo2 from '../assets/e351cb12-1980-4409-a8c0-679c37ef00e1-removebg-preview.png'
 
 
 const Navbar = ({ user, profile , handleLogout}) => {
@@ -12,7 +13,7 @@ const Navbar = ({ user, profile , handleLogout}) => {
     <div className="w-full fixed shadow-lg bg-slate-50 flex items-center z-[100] justify-between  h-[60px] px-2 ">
       <div>
         <div className="flex gap-1 items-center justify-center">
-          <img className="w-[50px] h-[50px]" src={logo} alt="" />
+          <img className="w-[50px] h-[50px]" src={logo2} alt="" />
 
           <h1 className="text-black text-2xl xs:text-xl md:text-2xl font-headlandOne">PratiFal</h1>
         </div>

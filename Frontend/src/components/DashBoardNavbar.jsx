@@ -1,5 +1,5 @@
 import React, { useState, memo, useEffect, useRef, useContext } from "react";
-import logo from "../assets/logo.png";
+import logo2 from '../assets/e351cb12-1980-4409-a8c0-679c37ef00e1-removebg-preview.png'
 import searchImg from "../assets/Search.svg";
 import IconButton from "./littleComponents/IconButton";
 import profileImage from "../assets/Group 1000005837.svg";
@@ -111,7 +111,7 @@ const DashBoardNavbar = memo(
               <div className="flex gap-1 items-center justify-center">
                 <img
                   className="w-[50px] h-[50px] xs:w-[25px] xs:h-[25px] sm:w-[40px] sm:h-[40px] md:w-[50px] md:h-[50px]"
-                  src={logo}
+                  src={logo2}
                   alt="Logo"
                 />
                 <h1 className="text-black text-2xl xs:text-xl sm:text-xl md:text-2xl font-headlandOne">
