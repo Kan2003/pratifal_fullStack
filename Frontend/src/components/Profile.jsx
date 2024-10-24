@@ -50,7 +50,7 @@ const Profile = () => {
 
         <div className="w-full flex xs:flex-col sm:flex-row xs:pt-[10vw] sm:pt-[5vw] lg:pt-0 px-[10vw] md:px-[5vw] xs:px-[5vw] items-center xs:gap-5 md:gap-0  justify-between">
           <div className="w-full flex xs:flex-col sm:flex-row items-center  gap-4">
-            <div className="w-[120px] h-[120px]  border-[6px] border-opacity-[50%] overflow-hidden rounded-full border-[#58B9ED]">
+            <div className="w-[120px] h-[120px]  border-[2px] border-opacity-[50%] overflow-hidden rounded-full border-[#58B9ED]">
               {user?.profile?.length > 4 ? (
                 <img
                   className="w-full h-full scale-110 brightness-125 object-cover"
@@ -95,10 +95,10 @@ const Profile = () => {
           </div>
           <div onClick={showImageUploader} className="w-[30%] xs:w-full xs:flex xs:items-center xs:justify-center  sm:w-[30%] ">
             <button
-              className={`bg-black xs:px-2 xs:py-2 sm:flex  xs:text-[11px] xs:gap-1 sm:px-2 sm:py-2 sm:text-[13px] sm:gap-2  py-2 px-4 rounded-3xl text-[13px] font-light flex items-center tracking-wider justify-center text-white font-headlandOne transition-all duration-500 gap-2 ease-in-out  hover:bg-[#58B9ED] hover:text-black `}
+              className={`bg-black xs:px-2 xs:py-2 sm:flex xs:items-center xs:justify-center xs:text-[11px] xs:gap-1 sm:px-3 sm:py-2 sm:text-[13px] sm:gap-2  py-2 px-4 rounded-3xl text-[13px] font-light flex items-center tracking-wider justify-center text-white font-headlandOne transition-all duration-500 gap-2 ease-in-out  hover:bg-[#58B9ED] hover:text-black `}
             >
-              <span className="w-[11px] h-[10px] ">
-                <img className="stroke-zinc-900" src={plus} alt="" />
+              <span className="w-[11px] h-[10px] flex items-center justify-center sm:w-[25px] sm:h-[23px] ">
+                <img className="stroke-zinc-900  " src={plus} alt="" />
               </span>
                 Upload Profile Image
             </button>

@@ -81,11 +81,14 @@ const ImageUploader = ({ setImageUpload, user, setUser }) => {
   const handleCancelUpload = () => {
     setFile(null);
     setPreviewUrl("");
+    if (imageRef.current) {
+      imageRef.current.value = ""; // Clear the file input
+    }
   };
 
   return (
     <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-10 backdrop-blur-sm">
-      <img className="absolute right-2 top-14 cursor-pointer xs:w-[30px] xs:h-[30px]  " onClick={() => setImageUpload(false)} src={cross} alt="Close" />
+      <img className="absolute right-2 top-14 cursor-pointer xs:w-[30px] xs:h-[30px] sm:w-[40px] sm:h-[40px] md:w-[50px] md:h-[50px] " onClick={() => setImageUpload(false)} src={cross} alt="Close" />
       <div className="flex flex-col items-center justify-center p-6 bg-white rounded-md shadow-lg">
         {loading && <div className="spinner-border animate-spin"></div>}
         {previewUrl && (
@@ -114,16 +117,16 @@ const ImageUploader = ({ setImageUpload, user, setUser }) => {
         {error && <div className="text-red-500 mt-2">{error}</div>}
         <div className="mt-4 flex gap-4">
           <button
-            className="py-2 px-7 bg-zinc-900 xs:px-3 xs:text-[10px] sm:text-[12px] sm:px-4 md:px-7 lg:px-7 xl:px-7 2xl:px-7 rounded-3xl text-[12px]  flex items-center tracking-normal justify-center text-white font-headlandOne transition-all duration-500 ease-in-out  hover:bg-[#58B9ED] hover:text-black"
+            className={`py-2 px-7 ${!file ? 'hidden' : 'block'} bg-zinc-900 xs:px-3 xs:text-[10px] sm:text-[12px] sm:px-4 md:px-7 lg:px-7 xl:px-7 2xl:px-7 rounded-3xl text-[12px]  flex items-center tracking-normal justify-center text-white font-headlandOne transition-all duration-500 ease-in-out  hover:bg-[#58B9ED] hover:text-black`}
             onClick={handleCancelUpload}
-            disabled={!file || loading}
+            // disabled={!file || loading}
           >
             Cancel
           </button>
           <button
-            className="py-2 px-7 bg-zinc-900 xs:px-3 xs:text-[10px] sm:text-[12px] sm:px-4 md:px-7 lg:px-7 xl:px-7 2xl:px-7 rounded-3xl text-[12px]  flex items-center tracking-normal justify-center text-white font-headlandOne transition-all duration-500 ease-in-out  hover:bg-[#58B9ED] hover:text-black"
+            className={`py-2 px-7 ${!file ? 'hidden' : 'block'} bg-zinc-900 xs:px-3 xs:text-[10px] sm:text-[12px] sm:px-4 md:px-7 lg:px-7 xl:px-7 2xl:px-7 rounded-3xl text-[12px]  flex items-center tracking-normal justify-center text-white font-headlandOne transition-all duration-500 ease-in-out  hover:bg-[#58B9ED] hover:text-black`}
             onClick={handleImageUpload}
-            disabled={!file || loading}
+            // disabled={!file || loading}
           >
             Upload
           </button>
