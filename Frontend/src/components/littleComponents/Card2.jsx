@@ -88,7 +88,7 @@ const Card2 = ({ reward, id, totalReward, setTotalReward }) => {
       </div>
       <div className="w-full flex items-center justify-between gap-2">
         <div className="flex gap-2 items-center justify-center">
-          <img className="w-[20px] h-[20px] " src={flipkart} alt="" />
+          {/* <img className="w-[20px] h-[20px] " src={flipkart} alt="" /> */}
           <h2 className="capitalize text-black font-medium font-lato">{reward.title}</h2>
         </div>
         <div className="flex gap-2">
@@ -114,7 +114,7 @@ const Card2 = ({ reward, id, totalReward, setTotalReward }) => {
           />
         </div>
       </div>
-      <div className="pl-[1vw] z-[2] w-full overflow-hidden font-hanken-grotesk italic text-black font-normal tracking-[2%]">
+      <div className=" z-[2] w-full overflow-hidden font-hanken-grotesk italic text-black font-normal tracking-[2%]">
         <div className="flex leading-tight items-center gap-2">
           <h2 className="coupon z-[2] text-[18px] uppercase">{coupon}</h2>
           <img
