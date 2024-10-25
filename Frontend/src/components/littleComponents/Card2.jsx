@@ -82,7 +82,7 @@ const Card2 = ({ reward, id, totalReward, setTotalReward }) => {
     
   return (
     <>
-    <div className="w-[300px] bg-custom-gradient overflow-hidden relative h-[190px] text-white rounded-2xl bg-[#d9d9d971] flex flex-col justify-between px-[10px] py-[8px] border-[1px] bg-bottom bg-cover border-zinc-500 shadow-md  object-cover ">
+    <div className="w-[300px] bg-custom-gradient hover:shadow-lg  backdrop-blur-lg hover:shadow-zinc-300 drop-shadow-lg cursor-pointer overflow-hidden relative h-[190px] text-white rounded-2xl bg-[#d9d9d971] flex flex-col justify-between px-[10px] py-[8px] border-[1px] bg-bottom bg-cover border-zinc-500 shadow-md  object-cover ">
       <div className="absolute left-[-28px] bottom-[-28px] w-[100px] h-[100px] rotate-45 z-[1]">
         <img className="w-full h-full bg-cover" src={image} alt="" />
       </div>
