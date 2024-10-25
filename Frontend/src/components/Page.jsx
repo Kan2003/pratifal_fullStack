@@ -2,16 +2,22 @@ import React, { useContext, useEffect, useRef, useState } from "react";
 import Navbar from "./Navbar";
 import Lenis from "lenis";
 import SignupButton from "./littleComponents/SignupButton";
-import speaker from "../assets/66f2e8b62f0f951eb6f22fb9_Frame.png";
-import background from "../assets/background.png";
+
 import video from "../assets/Untitled Video.mp4";
 import ColorButton from "./littleComponents/ColorButton";
 import axios from "axios";
 import HorizontalScroll from "./littleComponents/HorizontalScroll";
 const API_URl = import.meta.env.VITE_API_URL;
-
+import mute from "../assets/mute.png";
+import speaker from '../assets/speaker.png'
 const Page = ({handleLogout}) => {
 
+
+  const [muted , setMuted] = useState(true);
+  const handleMute = () => {
+    setMuted(!muted)
+
+  }
   
   useEffect(() => {
     const lenis = new Lenis();
@@ -103,8 +109,9 @@ const Page = ({handleLogout}) => {
             <div className="w-[90px] h-[90px] xs:h-[60px] xs:w-[60px] sm:h-[70px] sm:w-[70px] md:h-[90px] md:w-[90px] lg:h-[90px] lg:w-[90px] xl:h-[90px] xl:w-[90px] 2xl:h-[90px] 2xl:w-[90px]  bg-[#ffffff1a]  top-[25px] left-[25px] absolute rounded-[20%] flex items-center justify-center ">
               <div className="w-[60px] h-[60px] xs:h-[40px] xs:w-[40px] sm:h-[50px] sm:w-[50px] md:h-[60px] md:w-[60px] lg:h-[60px] lg:w-[60px] xl:h-[60px] xl:w-[60px] 2xl:h-[60px] 2xl:w-[60px] bg-[#D9D9D9] rounded-[20%] flex items-center justify-center">
                 <img
+                  onClick={handleMute}
                   className="w-[29.5px] h-[29.5px] cursor-pointer stroke-black z-20"
-                  src={speaker}
+                  src={muted ? mute : speaker }
                   alt=""
                 />
               </div>
@@ -112,7 +119,7 @@ const Page = ({handleLogout}) => {
             <video
               autoPlay
               playsInline
-              muted
+              muted={muted}
               loop
               src={video}
               className="w-full h-full object-cover"

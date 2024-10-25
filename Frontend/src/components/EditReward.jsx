@@ -125,7 +125,7 @@ const EditReward = ({ reward, setIsEdit, totalReward, setTotalReward }) => {
     <>
       {error && <Error error={error} />}
       {success && <Success success={success} />}
-      <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-[20%] backdrop-blur-sm">
+      <div className="fixed inset-0 flex z-[3] items-center justify-center bg-black bg-opacity-[20%] backdrop-blur-sm">
         <div className="bg-white rounded-lg shadow-lg px-6 py-3 w-[30vw]   xs:w-[80%] sm:w-[50vw] md:w-[60vw] lg:w-[40vw] xl:w-[30vw]">
           <div className="flex items-center justify-between">
             <h1 className=" text-[20px] font-Harmattan">Edit Reward</h1>

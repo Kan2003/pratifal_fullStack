@@ -3,6 +3,9 @@ export default {
   content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
   theme: {
     extend: {
+      backgroundImage: {
+        'custom-gradient': 'linear-gradient(to left bottom, #6ECCFF 4%, #FAFAFA 100%)',
+      },
       fontFamily: {
         "press-start": ['"Press Start 2P"', "cursive"],
         lato: ["Lato", "sans-serif"],

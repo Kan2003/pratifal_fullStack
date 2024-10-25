@@ -1,11 +1,19 @@
-import React from "react";
-import speaker from "../../assets/66f2e8b62f0f951eb6f22fb9_Frame.png";
+import React, { useState } from "react";
+import mute from "../../assets/mute.png";
+import speaker from '../../assets/speaker.png'
 import instagram from "../../assets/Instagram.svg";
 import linkedin from "../../assets/LinkedIn.svg";
 import facebook from "../../assets/Facebook.svg";
 import twitter from "../../assets/Twitter.svg";
 
 const RagisterLoginLayout = () => {
+
+  const [muted , setMuted] = useState(true);
+  const handleMute = () => {
+    setMuted(!muted)
+
+  }
+
   return (
     <div className="w-[50vw] xs:w-full  md:w-[50vw] h-full py-[5vw] px-[7vh]  gap-3 flex items-start flex-col font-headlandOne">
     <div className="w-full">
@@ -23,8 +31,9 @@ const RagisterLoginLayout = () => {
       <div className="w-[70px] h-[70px] bg-[#ffffff1a]  top-[15px] left-[15px] absolute rounded-[20%] flex items-center justify-center ">
         <div className="w-[50px] h-[50px] bg-[#D9D9D9] rounded-[20%] flex items-center justify-center">
           <img
+            onClick={handleMute}
             className="w-[27.5px] h-[27.5px] cursor-pointer stroke-black z-20"
-            src={speaker}
+            src={muted ? mute : speaker }
             alt=""
           />
         </div>
@@ -32,7 +41,7 @@ const RagisterLoginLayout = () => {
       <video
         autoPlay
         playsInline
-        muted
+        muted={muted}
         loop
         src="https://res.cloudinary.com/dpav8ilgm/video/upload/v1728385813/Untitled_Video_1_qdg3c2.mp4"
         className="w-full h-full object-cover"
