@@ -99,7 +99,7 @@ const PrivateRoute = ({ handleLogout ,  children, isAuthenticated, setIsAuthenti
     };
 
     fetchUserDetails();
-  }, [setUser]);
+  }, []);
 
   if (!isAuthenticated) {
     return <Navigate to="/login" />;
