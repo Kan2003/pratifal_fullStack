@@ -60,7 +60,7 @@ const Page = ({handleLogout}) => {
 
             // If refresh is successful, retry fetching user details
             if (refreshResponse.status === 200) {
-              const newResponse = await axios.get(`/${API_URl}/users/`, {
+              const newResponse = await axios.get(`${API_URl}/users/`, {
                 withCredentials: true,
               });
 

@@ -250,21 +250,16 @@ const refreshAccessToken = asyncHandler(async (req, res) => {
       secure: process.env.NODE_ENV === 'production',
     };
 
-    const { accessToken, newRefreshToken } =
+    const { accessToken, refreshToken } =
       await genrateAccessAndRefreshTokens(user._id);
 
     return res
       .status(200)
       .cookie("accessToken", accessToken, options)
-      .cookie("refreshToken", newRefreshToken, options)
+      .cookie("refreshToken", refreshToken, options)
       .json(
         new ApiResponse(
           200,
-          {
-            user: user,
-            accessToken,
-            newRefreshToken,
-          },
           "User refreshed successfully"
         )
       );
@@ -325,5 +320,6 @@ export {
   refreshAccessToken,
   updatePassword,
   deleteUser,
-  verifyToken
+  verifyToken,
+  genrateAccessAndRefreshTokens,
 };
