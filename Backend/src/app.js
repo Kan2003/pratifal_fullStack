@@ -5,7 +5,7 @@ import cookieParser from "cookie-parser";
 const app = express();
 app.use(
   cors({
-    origin: 'https://pratifal-frontend.onrender.com',
+    origin: 'https://pratifal.onrender.com',
     credentials: true,
   })
 );
