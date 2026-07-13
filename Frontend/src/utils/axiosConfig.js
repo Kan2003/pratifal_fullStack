@@ -33,9 +33,6 @@ axios.interceptors.response.use(
       return axios(originalRequest);
     } catch (refreshError) {
       localStorage.removeItem("isAuthenticated");
-      if (window.location.pathname !== "/login") {
-        window.location.href = "/login";
-      }
       return Promise.reject(refreshError);
     }
   }
