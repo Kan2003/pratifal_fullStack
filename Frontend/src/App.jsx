@@ -23,33 +23,26 @@ function App() {
   const [user, setUser] = useState({});
   const [search, setSearch] = useState("");
   const [showCreateForm , setShowCreateForm] = useState(false)
-  const [tokens, setTokens] = useState({
-    accessToken: null,
-    refreshToken: null,
-  });
 
-  
   const handleLogout = async () => {
     try {
-      const response = await axios.post(
-        `${API_URl}/users/logout`, 
-        {}, // Empty body
+      await axios.post(
+        `${API_URl}/users/logout`,
+        {},
         {
           withCredentials: true,
         }
       );
-  
-      if (response.status === 200) { 
-        // Clear frontend state
-        localStorage.removeItem("isAuthenticated");
-        setIsAuthenticated(false);
-        setTokens({ accessToken: null, refreshToken: null }); 
-        if (window.location.pathname === "/") {
-          window.location.reload(); // Reload the page if on the home page
-        }
-      }
     } catch (error) {
       console.error("Error logging out:", error);
+    } finally {
+      localStorage.removeItem("isAuthenticated");
+      setIsAuthenticated(false);
+      if (window.location.pathname === "/") {
+        window.location.reload();
+      } else {
+        window.location.href = "/login";
+      }
     }
   };
 
@@ -63,7 +56,7 @@ function App() {
 
           <Route 
             element={
-              <UserContext.Provider value={{ user, handleLogout , tokens , setTokens ,  setUser , search , setSearch , showCreateForm , setShowCreateForm}}>
+              <UserContext.Provider value={{ user, handleLogout , setUser , search , setSearch , showCreateForm , setShowCreateForm}}>
                 <PrivateRoute  isAuthenticated={isAuthenticated} setIsAuthenticated={setIsAuthenticated}>
                   <Outlet />
                 </PrivateRoute>

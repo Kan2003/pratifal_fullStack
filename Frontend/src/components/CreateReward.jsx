@@ -7,7 +7,7 @@ import Success from "./littleComponents/Success";
 import TextArea from "./littleComponents/TextArea";
 const API_URl = import.meta.env.VITE_API_URL;
 
-const CreateReward = ({ setShowCreateForm  , setTotalReward, totalReward}) => {
+const CreateReward = ({ setShowCreateForm, setTotalReward, totalReward }) => {
   const [title, setTitle] = useState("");
   const [showTitleError, setShowTitleError] = useState(false);
   const [description, setDescription] = useState("");
@@ -31,7 +31,6 @@ const CreateReward = ({ setShowCreateForm  , setTotalReward, totalReward}) => {
       setShowCouponError(coupon.trim() === "");
     } else if (e.target.id === "expiryDate") {
       const selectedDate = new Date(expiryDate).setHours(0, 0, 0, 0);
-
       setShowExpiryDateError(
         expiryDate.trim() === "" || selectedDate < currentDate
       );
@@ -59,41 +58,40 @@ const CreateReward = ({ setShowCreateForm  , setTotalReward, totalReward}) => {
       }
     } else if (e.target.id === "expiryDate") {
       const value = e.target.value;
-      console.log(value)
       setExpiryDate(value);
       const selectedDate = new Date(value).setHours(0, 0, 0, 0);
       if (value.trim() !== "" && selectedDate >= currentDate) {
         setShowExpiryDateError(false);
-      }
-      else {
-        console.log('expiry')
+      } else {
         setShowExpiryDateError(true);
       }
     }
   };
 
-  //   create a reward
+  //   create a reward (unchanged API)
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post(`${API_URl}/reward/create-reward`, {
-        title,
-        description,
-        couponCode: coupon,
-        expiryDate: new Date(expiryDate),
-      }, {
-        withCredentials: true, // Include credentials (cookies) in the request
-      });
-      console.log(response.data.message)
+      const response = await axios.post(
+        `${API_URl}/reward/create-reward`,
+        {
+          title,
+          description,
+          couponCode: coupon,
+          expiryDate: new Date(expiryDate),
+        },
+        {
+          withCredentials: true, // Include credentials (cookies) in the request
+        }
+      );
       const newReward = response.data.message;
-      console.log(newReward)
       if (response.status === 201) {
-        setTotalReward((prev) => [...prev , newReward])
+        setTotalReward((prev) => [...prev, newReward]);
         setSuccess("Reward created successfully");
       }
       setShowCreateForm(false);
     } catch (error) {
-      // const status = error.response.status
+      const status = error?.response?.status;
       console.log(status);
       console.log(error);
       if (status === 409) {
@@ -116,13 +114,16 @@ const CreateReward = ({ setShowCreateForm  , setTotalReward, totalReward}) => {
     <>
       {error && <Error error={error} />}
       {success && <Success success={success} />}
-      <div className="fixed inset-0 z-[3] flex items-center justify-center bg-black bg-opacity-[20%] backdrop-blur-sm ">
-        <div className="bg-white rounded-lg shadow-lg px-6 py-3 w-[30vw] xs:w-[80%] sm:w-[50vw] md:w-[60vw] lg:w-[40vw] xl:w-[30vw] ">
-          <div className="flex items-center justify-between">
-            <h1 className=" text-[20px] font-Harmattan">Create Reward</h1>
+      <div className="fixed inset-0 z-[3] flex items-center justify-center bg-black bg-opacity-[30%] backdrop-blur-sm">
+        <div
+          style={{ animation: "modalIn .28s cubic-bezier(.2,.8,.2,1)" }}
+          className="bg-white rounded-[20px] shadow-[0_34px_80px_-22px_rgba(0,0,0,0.45)] px-6 py-5 w-[30vw] xs:w-[88%] sm:w-[50vw] md:w-[60vw] lg:w-[40vw] xl:w-[30vw]"
+        >
+          <div className="flex items-center justify-between mb-2">
+            <h1 className="text-[22px] font-headlandOne text-black">Create Reward</h1>
             <img
               onClick={() => setShowCreateForm(false)}
-              className="w-[45px] h-[45px] cursor-pointer"
+              className="w-[40px] h-[40px] cursor-pointer p-2 rounded-[9px] hover:bg-slate-100 transition-colors"
               src={cross}
               alt=""
             />
@@ -131,7 +132,7 @@ const CreateReward = ({ setShowCreateForm  , setTotalReward, totalReward}) => {
             <div>
               <label
                 htmlFor="title"
-                className="block text-[16px] leading-none font-medium font-Harmattan text-gray-700"
+                className="block text-[14px] leading-none font-headlandOne text-slate-700 mb-1"
               >
                 Title
               </label>
@@ -139,7 +140,7 @@ const CreateReward = ({ setShowCreateForm  , setTotalReward, totalReward}) => {
                 error={showTitleError}
                 id="title"
                 type="text"
-                placeholder="title"
+                placeholder="e.g. Flipkart Big Billion"
                 value={title}
                 handleChange={handleChange}
                 handleBlur={handleBlur}
@@ -147,10 +148,10 @@ const CreateReward = ({ setShowCreateForm  , setTotalReward, totalReward}) => {
               />
             </div>
 
-            <div className="mt-2">
-            <label
+            <div className="mt-3">
+              <label
                 htmlFor="description"
-                className="block text-[16px] leading-none font-medium font-Harmattan text-gray-700"
+                className="block text-[14px] leading-none font-headlandOne text-slate-700 mb-1"
               >
                 Description
               </label>
@@ -158,19 +159,18 @@ const CreateReward = ({ setShowCreateForm  , setTotalReward, totalReward}) => {
                 error={showDescriptionError}
                 id="description"
                 type="text"
-                placeholder="Description"
+                placeholder="What's the deal?"
                 value={description}
                 handleChange={handleChange}
                 handleBlur={handleBlur}
                 text="Description is required."
               />
-              {/* <textarea className="w-full h-[30px]" maxLength={100} name="" id=""></textarea> */}
             </div>
 
-            <div className="mt-2">
+            <div className="mt-3">
               <label
                 htmlFor="coupon"
-                className="block text-[16px] leading-none font-medium font-Harmattan text-gray-700"
+                className="block text-[14px] leading-none font-headlandOne text-slate-700 mb-1"
               >
                 Coupon
               </label>
@@ -178,7 +178,7 @@ const CreateReward = ({ setShowCreateForm  , setTotalReward, totalReward}) => {
                 error={showCouponError}
                 id="coupon"
                 type="text"
-                placeholder="Coupon"
+                placeholder="e.g. SAVE500"
                 value={coupon}
                 handleChange={handleChange}
                 handleBlur={handleBlur}
@@ -186,17 +186,17 @@ const CreateReward = ({ setShowCreateForm  , setTotalReward, totalReward}) => {
               />
             </div>
 
-            <div className="mt-2">
+            <div className="mt-3">
               <label
                 htmlFor="expiryDate"
-                className="block text-[16px] leading-none font-medium font-Harmattan text-gray-700"
+                className="block text-[14px] leading-none font-headlandOne text-slate-700 mb-1"
               >
                 Expiry Date : MM/DD/YYYY
               </label>
               <Input
                 error={showExpiryDateError}
                 id="expiryDate"
-                type="date" // Correcting to lowercase "date"
+                type="date"
                 placeholder="expiry date"
                 value={expiryDate}
                 handleChange={handleChange}
@@ -206,7 +206,7 @@ const CreateReward = ({ setShowCreateForm  , setTotalReward, totalReward}) => {
             </div>
 
             <button
-              className="w-full text-white text-[15px] tracking-wide py-2 rounded-lg bg-[#58B9ED] font-headlandOne mt-4"
+              className="w-full text-white text-[15px] tracking-wide py-3 rounded-xl bg-[#18181b] hover:bg-[#58B9ED] hover:text-black transition-all duration-300 font-headlandOne mt-5"
               type="submit"
             >
               Create

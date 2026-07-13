@@ -1,11 +1,10 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import RagisterLoginLayout from "./littleComponents/RagisterLoginLayout";
 import Input from "./littleComponents/Input";
 import Error from "./littleComponents/Error";
 import Success from "./littleComponents/Success";
-import logo2 from '../assets/e351cb12-1980-4409-a8c0-679c37ef00e1-removebg-preview.png'
+import logo2 from "../assets/e351cb12-1980-4409-a8c0-679c37ef00e1-removebg-preview.png";
 const API_URl = import.meta.env.VITE_API_URL;
 
 const Login = ({ setIsAuthenticated }) => {
@@ -14,14 +13,14 @@ const Login = ({ setIsAuthenticated }) => {
   const [error, setError] = useState("");
   const [success, setSuccess] = useState("");
 
-  // custyomize error message
+  // customize error message (unchanged)
   const [showEmailError, setShowEmailError] = useState(false);
   const [showPasswordError, setShowPasswordError] = useState(false);
 
   const [emailText, setEmailText] = useState("Email is required.");
   const [passwordText, setPasswordText] = useState("Password is required.");
 
-  // password Icon
+  // password Icon (unchanged)
   const [passwordIcon, setPasswordIcon] = useState(false);
 
   const buttonError =
@@ -68,17 +67,9 @@ const Login = ({ setIsAuthenticated }) => {
 
   const navigate = useNavigate();
 
-  // const isLoggedIn = Boolean(localStorage.getItem("isAuthenticated")); // Replace with your authentication logic
-  // console.log(isLoggedIn)
-  // useEffect(() => {
-  //   if (isLoggedIn) {
-  //     navigate('/dashboard');
-  //   }
-  // }, [isLoggedIn, navigate]);
-
+  // login (unchanged API + auth flow)
   const handleSubmit = async (e) => {
     e.preventDefault();
-
     try {
       const Response = await axios.post(
         `${API_URl}/users/login`,
@@ -90,7 +81,6 @@ const Login = ({ setIsAuthenticated }) => {
       );
 
       if (Response.data.success) {
-        // Assuming success response from the API
         setSuccess("Login successful!");
         setIsAuthenticated(true);
         localStorage.setItem("isAuthenticated", "true");
@@ -114,13 +104,19 @@ const Login = ({ setIsAuthenticated }) => {
       }, 3000);
     }
   };
+
   return (
-    <div className="w-full h-screen bg-white xs:pt-[10vw] sm:pt-[5vw] md:pt-[2vw] lg:pt-0 flex xs:flex-col md:flex-row items-center justify-center xs:justify-around relative">
+    <div className="w-full min-h-screen bg-[#FAFAFA] flex xs:flex-col md:flex-row relative">
+      <style>{`
+        @keyframes floaty{0%,100%{transform:translateY(0)}50%{transform:translateY(-12px)}}
+        @keyframes floaty2{0%,100%{transform:translateY(0) rotate(-5deg)}50%{transform:translateY(-9px) rotate(-5deg)}}
+      `}</style>
       {error && <Error error={error} />}
       {success && <Success success={success} />}
-      <div className="fixed w-full bg-slate-50 top-0 left-0 flex pl-3  justify-start items-center">
-        <img className="w-[50px] h-[50px]" src={logo2} alt="" />
 
+      {/* fixed brand bar (kept) */}
+      <div className="fixed w-full top-0 left-0 flex pl-3 py-1 justify-start items-center z-20 md:bg-transparent bg-slate-50 md:shadow-none shadow-sm">
+        <img className="w-[46px] h-[46px] object-contain" src={logo2} alt="" />
         <Link
           className="text-black text-2xl xs:text-xl md:text-2xl font-headlandOne"
           to="/"
@@ -128,64 +124,132 @@ const Login = ({ setIsAuthenticated }) => {
           Pratifal
         </Link>
       </div>
-      <RagisterLoginLayout />
-      <div className="w-[50vw] xs:w-full sm:w-[80%] md:w-[50vw] h-full flex items-start flex-col pt-[15vw] xs:pt-[0vw]  md:pt-[25vw] lg:pt-[15vw] font-headlandOne px-[8vw] xs:px-[5vw]">
-        <form className="w-full h-full" onSubmit={handleSubmit}>
-          <div className="w-full">
-            <label
-              htmlFor="title"
-              className="block text-[16px] leading-none font-medium font-Harmattan text-gray-700"
-            >
-              Email
-            </label>
-            <Input
-              error={showEmailError}
-              id="email"
-              type="email"
-              placeholder="Email"
-              value={email}
-              handleChange={handleChange}
-              handleBlur={handleBlur}
-              text={emailText}
-            />
-          </div>
-          <div className="w-full">
-            <label
-              htmlFor="title"
-              className="block text-[16px] leading-none font-medium font-Harmattan text-gray-700"
-            >
-              Password
-            </label>
-            <Input
-              error={showPasswordError}
-              id="password"
-              type="password"
-              placeholder="Password"
-              value={password}
-              handleChange={handleChange}
-              handleBlur={handleBlur}
-              text={passwordText}
-              passwordCheck={true}
-              passwordIcon={passwordIcon}
-            />
+
+      {/* ===== left brand panel ===== */}
+      <div className="xs:hidden md:flex w-[46vw] min-h-screen bg-gradient-to-br from-[#002fec] to-[#49ACB4] flex-col justify-center px-[4vw] py-16 relative overflow-hidden">
+        <div className="flex flex-col gap-5 max-w-[440px] relative z-10">
+          <span className="self-start inline-flex items-center gap-2 bg-white/15 border border-white/40 rounded-full px-4 py-[7px] font-headlandOne text-[12px] text-white">
+            🎟️ Your personal rewards vault
+          </span>
+          <h1 className="font-headlandOne text-white text-[34px] lg:text-[42px] leading-[1.15]">
+            Welcome back to your vault
+          </h1>
+          <p className="text-[#eaf6ff] text-[15px] leading-relaxed font-hanken-grotesk max-w-[42ch]">
+            Every coupon, code and reward — right where you left them. Sign in
+            and pick up the savings.
+          </p>
+
+          {/* mini coupon-ticket card */}
+          <div
+            style={{ animation: "floaty 6s ease-in-out infinite" }}
+            className="mt-4 w-[300px] bg-white rounded-[20px] p-[18px] shadow-[0_30px_60px_-20px_rgba(0,0,0,0.45)]"
+          >
+            <div className="flex items-start gap-3">
+              <div className="shrink-0 w-10 h-10 rounded-[11px] bg-[#2563eb] flex items-center justify-center text-white font-headlandOne text-[19px] shadow-[0_6px_14px_-6px_#2563eb]">
+                F
+              </div>
+              <div className="flex-1 min-w-0">
+                <h4 className="font-headlandOne text-[17px] text-black leading-tight truncate">
+                  Flipkart Big Billion
+                </h4>
+                <span className="inline-block mt-1.5 font-hanken-grotesk text-[11px] font-bold tracking-wide px-2.5 py-[3px] rounded-full bg-[#3e843818] text-[#2f6b2b]">
+                  Active
+                </span>
+              </div>
+            </div>
+            <div className="flex items-center justify-between gap-2.5 mt-3 bg-[#f8fafc] border-[1.5px] border-dashed border-[#cbd5e1] rounded-xl pl-[13px] pr-2.5 py-2">
+              <span className="font-hanken-grotesk font-extrabold tracking-wide text-[15px] text-black uppercase">
+                FLIP500
+              </span>
+              <span className="shrink-0 bg-[#18181b] text-white font-headlandOne text-[11px] px-3 py-[6px] rounded-[9px]">
+                Copy
+              </span>
+            </div>
           </div>
 
-          <button
-            className={`w-full text-center  text-[14px] py-2 transition-all duration-300 ease-in-out rounded-lg ${
-              buttonError ? "bg-[#58B9ED]" : "bg-[#58b9ed54] cursor-not-allowed"
-            } `}
-            type="submit"
-            disabled={!buttonError}
-          >
-            Sign In
-          </button>
-          <h3 className="text-sm text-center mt-2">
-            Don't have an account{" "}
-            <Link className="text-[#58B9ED] underline" to="/register">
-              sign up with Email
-            </Link>{" "}
-          </h3>
-        </form>
+          <div className="flex gap-5 mt-2 text-white/90 font-headlandOne text-[12px]">
+            <span>💸 Free forever</span>
+            <span>♾️ Unlimited rewards</span>
+            <span>🔐 Private</span>
+          </div>
+        </div>
+        <span
+          style={{ animation: "floaty2 6s ease-in-out infinite" }}
+          className="absolute top-16 right-10 font-Harmattan font-bold text-[18px] text-white bg-[#49ACB4] px-4 py-1 rounded-full shadow-lg z-10"
+        >
+          SECURE 🔒
+        </span>
+        <div className="absolute -bottom-24 -left-24 w-[300px] h-[300px] rounded-full bg-white/10" />
+        <div className="absolute -top-16 -right-16 w-[220px] h-[220px] rounded-full bg-white/10" />
+      </div>
+
+      {/* ===== right form panel ===== */}
+      <div className="flex-1 min-h-screen flex items-center justify-center px-[6vw] xs:px-[6vw] xs:pt-[22vw] sm:pt-[14vw] md:pt-0">
+        <div className="w-full max-w-[420px] bg-white border border-[#e7e9f0] rounded-[20px] shadow-[0_20px_50px_-30px_rgba(16,24,40,0.35)] px-8 py-9 xs:px-6">
+          <h2 className="font-headlandOne text-[26px] text-black">Sign In</h2>
+          <p className="text-[14px] text-slate-500 font-hanken-grotesk mt-1 mb-6">
+            Good to see you again. Your rewards are waiting.
+          </p>
+
+          <form className="w-full font-headlandOne" onSubmit={handleSubmit}>
+            <div className="w-full">
+              <label
+                htmlFor="email"
+                className="block text-[14px] leading-none font-headlandOne text-slate-700 mb-1"
+              >
+                Email
+              </label>
+              <Input
+                error={showEmailError}
+                id="email"
+                type="email"
+                placeholder="you@example.com"
+                value={email}
+                handleChange={handleChange}
+                handleBlur={handleBlur}
+                text={emailText}
+              />
+            </div>
+            <div className="w-full">
+              <label
+                htmlFor="password"
+                className="block text-[14px] leading-none font-headlandOne text-slate-700 mb-1"
+              >
+                Password
+              </label>
+              <Input
+                error={showPasswordError}
+                id="password"
+                type="password"
+                placeholder="Password"
+                value={password}
+                handleChange={handleChange}
+                handleBlur={handleBlur}
+                text={passwordText}
+                passwordCheck={true}
+                passwordIcon={passwordIcon}
+              />
+            </div>
+
+            <button
+              className={`w-full text-center text-[14px] py-3 mt-2 transition-all duration-300 ease-in-out rounded-xl font-headlandOne ${
+                buttonError
+                  ? "bg-[#18181b] text-white hover:bg-[#58B9ED] hover:text-black"
+                  : "bg-zinc-200 text-zinc-400 cursor-not-allowed"
+              }`}
+              type="submit"
+              disabled={!buttonError}
+            >
+              Sign In →
+            </button>
+            <h3 className="text-sm text-center mt-4 font-hanken-grotesk text-slate-600">
+              Don't have an account{" "}
+              <Link className="text-[#2a90d6] underline" to="/register">
+                sign up with Email
+              </Link>{" "}
+            </h3>
+          </form>
+        </div>
       </div>
     </div>
   );

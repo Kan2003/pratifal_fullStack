@@ -12,9 +12,6 @@ const genrateAccessAndRefreshTokens = async (id) => {
     const accessToken = await user.generateAccessToken();
     const refreshToken = await user.generateRefreshToken();
 
-    console.log('acccess token: ' + accessToken)
-    console.log('refresh token: ' + refreshToken)
-
     user.refreshToken = refreshToken;
     await user.save({ validateBeforeSave: false });
 
@@ -96,13 +93,10 @@ const loginUser = asyncHandler(async (req, res) => {
   );
 
   const options = {
-    sameSite : 'None',
-    httpsOnly: true,
-    secure: process.env.NODE_ENV === 'production',
+    sameSite: 'None',
+    httpOnly: true,
+    secure: true,
   };
-
-  console.log(accessToken, 'access token login')
-  console.log(refreshToken, 'refresh token login')
 
   return res
     .status(200)
@@ -160,7 +154,7 @@ const logoutUser = asyncHandler(async (req, res) => {
     .status(200)
     .clearCookie("accessToken", options)
     .clearCookie("refreshToken", options)
-    .json(new ApiResponse(200, "User loggout successfully"));
+    .json(new ApiResponse(200, "User logged out successfully"));
 });
 
 const updateProfile = asyncHandler(async (req, res) => {
@@ -246,8 +240,9 @@ const refreshAccessToken = asyncHandler(async (req, res) => {
     }
 
     const options = {
+      sameSite: 'None',
       httpOnly: true,
-      secure: process.env.NODE_ENV === 'production',
+      secure: true,
     };
 
     const { accessToken, refreshToken } =

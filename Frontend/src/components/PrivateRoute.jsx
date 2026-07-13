@@ -13,34 +13,9 @@ const PrivateRoute = ({ handleLogout ,  children, isAuthenticated, setIsAuthenti
     setSearch,
     showCreateForm,
     setShowCreateForm,
-    tokens,
-    setTokens
   } = useContext(UserContext);
- 
+
   const navigate = useNavigate();
-
-
-
-  const refreshTokenHandler = async () => {
-    if (!tokens.refreshToken) return;
-
-    try {
-      console.log("Refreshing access token...");
-      const { data } = await axios.post(`${API_URl}/users/refresh-accesstoken`, {
-        refreshToken: tokens.refreshToken,
-      });
-
-      if (data.success) {
-        const newAccessToken = data.accessToken;
-        setTokens((prev) => ({ ...prev, accessToken: newAccessToken }));
-        console.log("Access token refreshed successfully:", newAccessToken);
-      } else {
-        console.error("Error refreshing token:", data.message);
-      }
-    } catch (error) {
-      console.error("Error refreshing token:", error);
-    }
-  };
 
   useEffect(() => {
     const checkAuth = async () => {
@@ -48,11 +23,9 @@ const PrivateRoute = ({ handleLogout ,  children, isAuthenticated, setIsAuthenti
         const { data } = await axios.get(`${API_URl}/users/verify-token`, {
           withCredentials: true,
         });
-        console.log('data' , data)
         localStorage.setItem("isAuthenticated", true);
         setIsAuthenticated(true);
       } catch (error) {
-        console.error("Error verifying token:", error);
         localStorage.removeItem("isAuthenticated");
         setIsAuthenticated(false);
       }
@@ -60,30 +33,6 @@ const PrivateRoute = ({ handleLogout ,  children, isAuthenticated, setIsAuthenti
 
     checkAuth();
   }, []);
-
-
-
-  const checkTokenExpiry = () => {
-    console.log("Checking access token expiration...");
-    if (!tokens.accessToken) return;
-
-    const accessTokenExpiry = new Date(tokens.accessToken.exp * 1000);
-    console.log("Access Token Expiry Time:", accessTokenExpiry);
-    const timeDiff = accessTokenExpiry - new Date();
-
-    if (timeDiff <= 60000) {
-      console.log("Access token is about to expire. Refreshing...");
-      refreshTokenHandler();
-    }
-  };
-
-  useEffect(() => {
-    if (tokens.accessToken) {
-      checkTokenExpiry();
-      const intervalId = setInterval(checkTokenExpiry, 30000);
-      return () => clearInterval(intervalId);
-    }
-  }, [tokens.accessToken]);
 
   useEffect(() => {
     const fetchUserDetails = async () => {

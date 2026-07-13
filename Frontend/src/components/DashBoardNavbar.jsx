@@ -1,5 +1,5 @@
 import React, { useState, memo, useEffect, useRef, useContext } from "react";
-import logo2 from '../assets/e351cb12-1980-4409-a8c0-679c37ef00e1-removebg-preview.png'
+import logo2 from "../assets/e351cb12-1980-4409-a8c0-679c37ef00e1-removebg-preview.png";
 import searchImg from "../assets/Search.svg";
 import IconButton from "./littleComponents/IconButton";
 import profileImage from "../assets/Group 1000005837.svg";
@@ -9,21 +9,19 @@ import { Dropdown } from "antd";
 import logout from "../assets/logout-svgrepo-com.svg";
 import leftArrow from "../assets/leftArrow.svg";
 import { UserContext } from "../App";
-import cross from '../assets/cross.svg'
+import cross from "../assets/cross.svg";
+
 const DashBoardNavbar = memo(
-  ({ user, userImage, setSearch, search , setShowCreateForm, showCreateForm }) => {
+  ({ user, userImage, setSearch, search, setShowCreateForm, showCreateForm }) => {
     const { handleLogout } = useContext(UserContext);
     const location = useLocation();
-    // console.log(location.pathname);
     const [drop, setDrop] = useState(false);
     const handleDropDown = () => {
       setDrop((prev) => !prev);
     };
-    
-    // create reward  component
 
+    // create reward component (unchanged)
     const openRewardForm = () => {
-      // Add your code to open the reward form
       setShowCreateForm(true);
     };
 
@@ -72,13 +70,12 @@ const DashBoardNavbar = memo(
           >
             <h1>LogOut</h1>
             <img
-              className="w-[25px] scale-110  h-[25px]  leading-none"
+              className="w-[25px] scale-110 h-[25px] leading-none"
               src={logout}
               alt=""
             />
           </div>
         ),
-
         key: "4",
       },
     ];
@@ -89,28 +86,27 @@ const DashBoardNavbar = memo(
 
     const clearSearch = () => {
       setSearch("");
-    }
+    };
 
-    // Use a stable function reference for handleDropDown
     const [fullSearch, setFullSearch] = useState(false);
-
     const searchInputRef = useRef(null);
 
-    // Effect to focus the search input when fullSearch is true
+    // Effect to focus the search input when fullSearch is true (unchanged)
     useEffect(() => {
       if (fullSearch && searchInputRef.current) {
         searchInputRef.current.focus();
       }
     }, [fullSearch]);
+
     return (
       <>
-        <div className="w-full fixed shadow-lg xs:px-2 sm:px-4 bg-slate-50 flex items-center z-[100] justify-between h-[60px] px-4 xs:h-[50px] sm:h-[60px] transition-all duration-300 ease-in-out ">
+        <div className="w-full fixed shadow-lg xs:px-2 sm:px-4 bg-slate-50 flex items-center z-[100] justify-between h-[60px] px-4 xs:h-[50px] sm:h-[60px] transition-all duration-300 ease-in-out">
           {/* Logo */}
           {!fullSearch && (
             <Link to="/dashboard">
               <div className="flex gap-1 items-center justify-center">
                 <img
-                  className="w-[50px] h-[50px] xs:w-[25px] xs:h-[25px] sm:w-[40px] sm:h-[40px] md:w-[50px] md:h-[50px]"
+                  className="w-[46px] h-[46px] xs:w-[25px] xs:h-[25px] sm:w-[40px] sm:h-[40px] md:w-[46px] md:h-[46px] object-contain"
                   src={logo2}
                   alt="Logo"
                 />
@@ -121,12 +117,12 @@ const DashBoardNavbar = memo(
             </Link>
           )}
 
-          {/* Search */}
+          {/* Search (desktop) — rounded, with focus ring */}
           {location.pathname === "/dashboard" && (
-            <div className="group sm:flex xs:hidden md:flex  input w-[25vw] shadow mb-1 border rounded py-2 px-3 text-sm text-black focus-within:border-[#58B9ED] hover:border-[#58B9ED] flex items-center justify-between">
+            <div className="group sm:flex xs:hidden md:flex input w-[25vw] bg-white border border-zinc-200 rounded-full py-2 px-4 text-sm text-black transition-all duration-200 focus-within:border-[#58B9ED] focus-within:shadow-[0_0_0_3px_rgba(88,185,237,0.15)] hover:border-[#58B9ED] flex items-center justify-between">
               <input
-                className="outline-none w-[80%]"
-                placeholder="Search your reward"
+                className="outline-none w-[80%] bg-transparent font-hanken-grotesk"
+                placeholder="Search by title or code…"
                 onChange={handleSearch}
               />
               <img
@@ -143,34 +139,32 @@ const DashBoardNavbar = memo(
               {location.pathname === "/dashboard" && (
                 <IconButton text="create" openRewardForm={openRewardForm} />
               )}
-             {
-              location.pathname === "/dashboard" && (
+              {location.pathname === "/dashboard" && (
                 <div
-                onClick={() => setFullSearch(!fullSearch)}
-                className="w-[35px]  cursor-pointer xs:flex sm:hidden h-[35px] rounded-full hover:bg-zinc-200  hover:backdrop-blur-3xl  transition-all duration-300 ease-out  flex items-center justify-center"
-              >
-                <img
-                  className="w-[50%] h-[50%]"
-                  src={searchImg}
-                  alt="Search Icon"
-                />
-              </div>
-              )
-             }
-              <div className="flex gap-4 border-[1px] stroke-[0.83] stroke-[#E8EFF]  items-center justify-between px-3 xs:px-1 xs:py-[2px] sm:px-3 sm:py-[7px]  py-[7px] rounded-lg">
-                <div className="flex gap-1 items-center">
+                  onClick={() => setFullSearch(!fullSearch)}
+                  className="w-[35px] cursor-pointer xs:flex sm:hidden h-[35px] rounded-full hover:bg-zinc-200 hover:backdrop-blur-3xl transition-all duration-300 ease-out flex items-center justify-center"
+                >
+                  <img
+                    className="w-[50%] h-[50%]"
+                    src={searchImg}
+                    alt="Search Icon"
+                  />
+                </div>
+              )}
+              <div className="flex gap-4 bg-white border border-zinc-200 hover:border-zinc-300 transition-colors items-center justify-between px-3 xs:px-1 xs:py-[2px] sm:px-3 sm:py-[6px] py-[6px] rounded-xl">
+                <div className="flex gap-2 items-center">
                   <Link
                     to="/dashboard"
-                    className="bg-[#F1F3F7] w-[40px] h-[40px] xs:w-[30px] xs:h-[30px]  sm:w-[40px] sm:h-[40px] border-[1px] border-zinc-600 rounded-lg cursor-pointer flex items-center justify-center overflow-hidden"
+                    className="bg-gradient-to-br from-[#6ECCFF] to-[#002fec] w-[38px] h-[38px] xs:w-[30px] xs:h-[30px] sm:w-[38px] sm:h-[38px] rounded-[9px] cursor-pointer flex items-center justify-center overflow-hidden"
                   >
                     {userImage?.length > 4 ? (
-                     <div className="flex justify-center items-center w-full bg-center h-full">
-                     <img
-                       className="object-cover scale-125  transition-all duration-500 ease-in"
-                       src={userImage}
-                       alt="User"
-                     />
-                   </div>
+                      <div className="flex justify-center items-center w-full bg-center h-full">
+                        <img
+                          className="object-cover scale-125 transition-all duration-500 ease-in"
+                          src={userImage}
+                          alt="User"
+                        />
+                      </div>
                     ) : (
                       <img
                         src={profileImage}
@@ -180,8 +174,8 @@ const DashBoardNavbar = memo(
                     )}
                   </Link>
                   <div>
-                    <p className="text-[8px]">Welcome Back,</p>
-                    <p className="text-[16px] xs:text-[12px] sm:text-[16px] capitalize">
+                    <p className="text-[9px] text-slate-400 leading-none">Welcome Back,</p>
+                    <p className="text-[15px] xs:text-[12px] sm:text-[15px] capitalize font-semibold leading-tight">
                       {user?.username}
                     </p>
                   </div>
@@ -204,19 +198,21 @@ const DashBoardNavbar = memo(
               </div>
             </div>
           )}
+
+          {/* Full-width mobile search (unchanged behaviour) */}
           {fullSearch && (
-            <div className="w-full px-4 h-full  flex items-center justify-around ">
+            <div className="w-full px-4 h-full flex items-center justify-around">
               <img
                 onClick={() => setFullSearch(!fullSearch)}
                 className="cursor-pointer"
                 src={leftArrow}
                 alt=""
               />
-              <div className="group  input w-[80%] shadow  border rounded-full py-2 px-3 text-sm text-black focus-within:border-[#58B9ED] focus-within: hover:border-[#58B9ED] flex items-center justify-between">
+              <div className="group input w-[80%] bg-white border border-zinc-200 rounded-full py-2 px-4 text-sm text-black transition-all duration-200 focus-within:border-[#58B9ED] focus-within:shadow-[0_0_0_3px_rgba(88,185,237,0.15)] hover:border-[#58B9ED] flex items-center justify-between">
                 <input
                   ref={searchInputRef}
-                  className="outline-none w-[80%] "
-                  placeholder="Search your reward"
+                  className="outline-none w-[80%] bg-transparent font-hanken-grotesk"
+                  placeholder="Search by title or code…"
                   value={search}
                   onChange={handleSearch}
                 />
